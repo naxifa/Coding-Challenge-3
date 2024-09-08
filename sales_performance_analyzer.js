@@ -5,15 +5,22 @@ function calculateAverageSales(sales)
 {
 if (sales.length === 0) 
 {return 0}; 
-console.log(`Sales Figures: , sales`); // Individual sales values
+console.log(`Sales Figures: , ${sales}`); // Individual sales values
 
 const totalSales = sales.reduce((acc,sale) => acc + sale, 0); 
-console.log(`Total Sales: , totalSales`); // Total sales values 
+console.log(`Total Sales: , ${totalSales}`); // Total sales values 
 
 const averageSales = totalSales / sales.length;
-console.log(`Average Sales: , averageSales`); // Average sales value
+console.log(`Average Sales: , ${averageSales}`); // Average sales value
 
 return averageSales; 
 }
+
+// Example test
+let salesFigures = [6000,7500,9800];
+calculateAverageSales(salesFigures);
+
+
+
 
 

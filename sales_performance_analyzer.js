@@ -32,3 +32,21 @@ function determinePerformanceRating(averageSales)
 }
 
 
+// Task 3: Creating a Function to Identify Top and Bottom Performers
+
+function findTopAndBottomPerformers(salespeople)  
+{
+const output = salespeople.reduce((acc, current) => {if (current.totalSales > acc.topPerformer.totalSales)
+    {acc.topPerformer = current;}})
+
+if (current.totalSales < acc.bottomPerformer.totalSales)
+{acc.bottomPerformer = current;}
+
+return acc;
+
+topPerformer: salespeople[0]
+bottomPerformer: salespeople[0]
+
+}
+
+

@@ -1,17 +1,31 @@
 
-// Task 1: Creating a Function to Calculate Average Sales
+// Task 5: Testing Functions with Sample Data
+
+const salesData = [
+    { name: 'Alice', sales: [12000, 15000, 13000] },
+    { name: 'Bob', sales: [7000, 6000, 7500] },
+    { name: 'Charlie', sales: [3000, 4000, 3500] },
+    { name: 'Diana', sales: [9000, 8500, 9200] },
+    
+  ];
+
+  const performanceReport = generatePerformanceReport(salesData);
+  console.log (performanceReport);
+
+
+  // Task 1: Creating a Function to Calculate Average Sales
 
 function calculateAverageSales(sales) 
 {
 if (sales.length === 0) 
 {return 0;} 
-console.log(`Sales Figures: , ${sales}`); // Individual sales values
+console.log(`Sales Figures: ${sales}`); // Individual sales values
 
 const totalSales = sales.reduce((acc,sale) => acc + sale, 0); 
-console.log(`Total Sales: , ${totalSales}`); // Total sales values 
+console.log(`Total Sales: ${totalSales}`); // Total sales values 
 
 const averageSales = totalSales / sales.length;
-console.log(`Average Sales: , ${averageSales}`); // Average sales value
+console.log(`Average Sales: ${averageSales}`); // Average sales value
 
 return averageSales; 
 }
@@ -36,17 +50,25 @@ function determinePerformanceRating(averageSales)
 
 function findTopAndBottomPerformers(salespeople)  
 {
-const output = salespeople.reduce((acc, current) => {if (current.totalSales > acc.topPerformer.totalSales)
-    {acc.topPerformer = current;}})
+    if (salespeople.length === 0)
+    {return {topPerformer: null, bottomPerformer: null};}
+
+const output = salespeople.reduce((acc, current) => {
+if (acc.topPerformer.totalSalescurrent.totalSales < acc.topPerformer.totalSales)
+    {acc.topPerformer = current;
+    }
 
 if (current.totalSales < acc.bottomPerformer.totalSales)
 {acc.bottomPerformer = current;}
 
 return acc;
-
-topPerformer: salespeople[0]
+},
+{
+topPerformer: salespeople[0],
 bottomPerformer: salespeople[0]
-
+}
+);
+return output;
 }
 
 
@@ -54,7 +76,8 @@ bottomPerformer: salespeople[0]
 
 function generatePerformanceReport(salesRecords) 
 {
-const performanceSummary = salesRecords.map(person => {
+const performanceSummary = salesRecords.map(person => 
+    {
 const averageSales = calculateAverageSales(person.sales);
 const performanceRating = determinePerformanceRating(averageSales);
 const totalSales = person.sales.reduce((sum,sale) => sum + sale, 0);
@@ -66,7 +89,7 @@ return
     totalSales
 };
 });
-const { topPerformer, bottomPerformer } = identifyTopAndBottomPerformers(performanceSummary);
+const { topPerformer, bottomPerformer } = findTopAndBottomPerformers(performanceSummary);
 
 return { 
     performanceSummary,
@@ -74,3 +97,5 @@ return {
     bottomPerformer: {employeeName: bottomPerformer.employeeName, totalSales: bottomPerformer.totalSales}
 };
 }
+
+

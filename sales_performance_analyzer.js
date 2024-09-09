@@ -50,3 +50,27 @@ bottomPerformer: salespeople[0]
 }
 
 
+// Task 4: Combining Functions to Generate a Performance Report
+
+function generatePerformanceReport(salesRecords) 
+{
+const performanceSummary = salesRecords.map(person => {
+const averageSales = calculateAverageSales(person.sales);
+const performanceRating = determinePerformanceRating(averageSales);
+const totalSales = person.sales.reduce((sum,sale) => sum + sale, 0);
+
+return 
+{
+    employeeName: person.name, 
+    performanceRating, 
+    totalSales
+};
+});
+const { topPerformer, bottomPerformer } = identifyTopAndBottomPerformers(performanceSummary);
+
+return { 
+    performanceSummary,
+    topPerformer: {employeeName: topPerformer.employeeName, totalSales: topPerformer.totalSales},
+    bottomPerformer: {employeeName: bottomPerformer.employeeName, totalSales: bottomPerformer.totalSales}
+};
+}

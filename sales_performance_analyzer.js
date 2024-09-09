@@ -43,9 +43,11 @@ let bottomPerformer;
 let max = -1;
 let min = 99999999; 
 
-for (let i = 0; i < salesPeople.length; i++) { if (salesPeople[i].totalSales  > max) {
+for (let i = 0; i < salesPeople.length; i++) { 
+   if (salesPeople[i].totalSales  > max)  {
     topPerformer = salesPeople[i];
     max = salesPeople [i]. totalSales; 
+}
 
     if (salesPeople[i].totalSales < min)  {
         bottomPerformer = salesPeople[i];
@@ -54,7 +56,7 @@ for (let i = 0; i < salesPeople.length; i++) { if (salesPeople[i].totalSales  > 
         return {topPerformer: Object.assign({},topPerformer), bottomPerformer: Object.assign({}, bottomPerformer)};
     }
 
-}}
+}
 
 
 // Task 4: Combining Functions to Generate a Performance Report

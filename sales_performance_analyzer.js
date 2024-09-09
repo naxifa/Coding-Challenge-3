@@ -1,17 +1,4 @@
 
-// Task 5: Testing Functions with Sample Data
-
-const salesData = [
-    { name: 'Alice', sales: [12000, 15000, 13000] },
-    { name: 'Bob', sales: [7000, 6000, 7500] },
-    { name: 'Charlie', sales: [3000, 4000, 3500] },
-    { name: 'Diana', sales: [9000, 8500, 9200] },
-    
-  ];
-
-  const performanceReport = generatePerformanceReport(salesData);
-  console.log (performanceReport);
-
 
   // Task 1: Creating a Function to Calculate Average Sales
 
@@ -21,7 +8,7 @@ if (sales.length === 0)
 {return 0;} 
 console.log(`Sales Figures: ${sales}`); // Individual sales values
 
-const totalSales = sales.reduce((acc,sale) => acc + sale, 0); 
+const totalSales = sales.reduce((sum, sale) => sum + sale, 0); 
 console.log(`Total Sales: ${totalSales}`); // Total sales values 
 
 const averageSales = totalSales / sales.length;
@@ -48,28 +35,26 @@ function determinePerformanceRating(averageSales)
 
 // Task 3: Creating a Function to Identify Top and Bottom Performers
 
-function findTopAndBottomPerformers(salespeople)  
-{
-    if (salespeople.length === 0)
-    {return {topPerformer: null, bottomPerformer: null};}
+function findTopAndBottomPerformers(salesPeople) {
 
-const output = salespeople.reduce((acc, current) => {
-if (acc.topPerformer.totalSalescurrent.totalSales < acc.topPerformer.totalSales)
-    {acc.topPerformer = current;
+let topPerformer;
+let bottomPerformer;
+
+let max = -1;
+let min = 99999999; 
+
+for (let i = 0; i < salesPeople.length; i++) { if (salesPeople[i].totalSales  > max) {
+    topPerformer = salesPeople[i];
+    max = salesPeople [i]. totalSales; 
+
+    if (salesPeople[i].totalSales < min)  {
+        bottomPerformer = salesPeople[i];
+        min = salesPeople [i].totalSales;}
+
+        return {topPerformer: Object.assign({},topPerformer), bottomPerformer: Object.assign({}, bottomPerformer)};
     }
 
-if (current.totalSales < acc.bottomPerformer.totalSales)
-{acc.bottomPerformer = current;}
-
-return acc;
-},
-{
-topPerformer: salespeople[0],
-bottomPerformer: salespeople[0]
-}
-);
-return output;
-}
+}}
 
 
 // Task 4: Combining Functions to Generate a Performance Report
@@ -84,7 +69,7 @@ const totalSales = person.sales.reduce((sum,sale) => sum + sale, 0);
 
 return 
 {
-    employeeName: person.name, 
+    name: person.name, 
     performanceRating, 
     totalSales
 };
@@ -93,9 +78,22 @@ const { topPerformer, bottomPerformer } = findTopAndBottomPerformers(performance
 
 return { 
     performanceSummary,
-    topPerformer: {employeeName: topPerformer.employeeName, totalSales: topPerformer.totalSales},
-    bottomPerformer: {employeeName: bottomPerformer.employeeName, totalSales: bottomPerformer.totalSales}
+    topPerformer: {name: topPerformer.name, totalSales: topPerformer.totalSales},
+    bottomPerformer: {name: bottomPerformer.name, totalSales: bottomPerformer.totalSales}
 };
 }
 
 
+
+// Task 5: Testing Functions with Sample Data
+
+const salesFigures = [
+    { name: 'Alice', sales: [12000, 15000, 13000] },
+    { name: 'Bob', sales: [7000, 6000, 7500] },
+    { name: 'Charlie', sales: [3000, 4000, 3500] },
+    { name: 'Diana', sales: [9000, 8500, 9200] },
+    
+  ];
+
+  const performanceReport = generatePerformanceReport(salesFigures);
+  console.log (performanceReport);
